@@ -1,4 +1,4 @@
-var hist = function(data_in, chart_id, value, chart_title) {
+var hist = function(data_in, chart_id, value, chart_title, labels_on) {
 
   var margin = {
       "top": 30,
@@ -55,7 +55,8 @@ var hist = function(data_in, chart_id, value, chart_title) {
     .attr("x", (width / data_in.length - 1) / 2)
     .attr("text-anchor", "middle")
     .text(function(d) {
-      return formatCount(d.value[value]);
+      if (labels_on) {
+      return formatCount(d.value[value]);}
     });
 
   var unique_names = data_in.map(function(d) {
@@ -127,7 +128,7 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
 
     /* --------------------------------------------------------- 
     
-    	Add a third and 4th variable to this map reduction
+      Add a third and 4th variable to this map reduction
       - the third should be the minimum year
       - the fourth should be the maximum year
       - hint: use inequalities
@@ -156,23 +157,23 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
     var reduce_remove = function(p, v, nf) {
       --p.count;
       p.total -= v.g_all;
-			p.all_years.splice(p.all_years.indexOf(v.year), 1); // remove year
-  		p.max_year = Math.max.apply(null, p.all_years); // get max over array. 
+      p.all_years.splice(p.all_years.indexOf(v.year), 1); // remove year
+      p.max_year = Math.max.apply(null, p.all_years); // get max over array. 
       p.min_year = Math.min.apply(null, p.all_years); // get max over
-			if(v.year > p.max_year || v.year < p.min_year){
-      		p.count = 0;
+      if(v.year > p.max_year || v.year < p.min_year){
+          p.count = 0;
           p.total = 0;}
           
       return p;
     }
     
     var reduce_add_playerid = function(p,v,nf) {
-    	p.count += v.g_all;
+      p.count += v.g_all;
       return p;
     }
     
-		var reduce_remove_playerid = function(p,v,nf) {  
-			p.count -= v.g_all;
+    var reduce_remove_playerid = function(p,v,nf) {  
+      p.count -= v.g_all;
       return p;
     }
 
@@ -188,16 +189,13 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
       // count refers to a specific key specified in reduce_init 
       // and updated in reduce_add and reduce_subtract
       // Modify this for the chart to plot the specified variable on the y-axis
-      hist(group_team.top(Infinity),
-        "appearances_by_team",
-        "count",
-        "# of Appearances by Team"
-      );
+
       
-		hist(group_year.top(Infinity),
+    hist(group_year.top(Infinity),
         "games_by_year",
         "total",
-        "# of Games by Year"
+        "# of Games by Year",
+        false
       );
 
       /* build more charts here */
@@ -205,15 +203,17 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
       hist(group_year.top(Infinity), // Why does this not refresh?
         "team_by_year",
         "count",
-        "# Teams by Year"
+        "# Teams by Year",
+        true
       );
-      hist(group_team.top(Infinity), // FIX THIS
+      hist(group_team.top(Infinity), 
         "appearances_by_team",
         "count",
-        "# of Appearances by Team"
+        "# of Appearances by Team",
+        true
       );
       
-		hist(group_team.top(Infinity), // FIX THIS
+    hist(group_team.top(Infinity), 
         "games_by_team",
         "total",
         "# of Games by Team"
@@ -247,22 +247,6 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
         "range": true,
         "value": [min_year, max_year]
       });
-    var n_games_slider = new Slider(
-      "#n_games_slider", {
-        "id": "n_games_slider",
-        "min": 0,
-        "max": 100,
-        "range": true,
-        "value": [0, 100]
-      });
-    var n_games_slider = new Slider(
-      "#n_games_slider", {
-        "id": "n_games_slider",
-        "min": 0,
-        "max": 100,
-        "range": true,
-        "value": [0, 100]
-      });
 
     // this is an event handler for a particular slider
     n_games_slider.on("slide", function(e) {
@@ -283,7 +267,7 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
 
     /* add at least 3 more event handlers here */
     year_slider.on("slide", function(e) {
-     	d3.select("#year_slider_txt").text("min: " + e[0] + ", max: " + e[1]);
+      d3.select("#year_slider_txt").text("min: " + e[0] + ", max: " + e[1]);
       dim_year.filter(e);
       render_plots();
     });
@@ -292,19 +276,19 @@ d3.json("https://tranquil-peak-82564.herokuapp.com/api/v1.0/data/baseball/limit/
    var term = document.getElementById('searchPlayer').value;
   dim_playerid.filter(document.getElementById('searchPlayer').value);
    console.log(term);
-	render_plots();
+  render_plots();
    });
   document.getElementById('clear_player_btn').addEventListener("click", function(d) {
   dim_playerid.filterAll();
-  	render_plots();});
+    render_plots();});
   
   
      document.getElementById('team_btn').addEventListener("click", function(d) {
    var term = document.getElementById('searchTeam').value;
    dim_team.filter(document.getElementById('searchTeam').value);
-     	render_plots();
+      render_plots();
    });
-  document.getElementById('clear_team_btn').addEventListener("click", function(d) {dim_team.filterAll();  	render_plots();});
+  document.getElementById('clear_team_btn').addEventListener("click", function(d) {dim_team.filterAll();    render_plots();});
 
     /* --------------------------------------------------------- */
 
