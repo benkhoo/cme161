@@ -14,18 +14,18 @@ def send_assets(path):
     return send_from_directory('app/assets/', path)
 
 
-####### Data massaging  #######
-import json, collections
-@app.route('/trellis', methods=['GET'])
-def get_trellis():
-	with open('app/assets/data/trellis.json') as data_file:
-		return json.dumps(json.load(data_file))
+# ####### Data massaging  #######
+# import json, collections
+# @app.route('/trellis', methods=['GET'])
+# def get_trellis():
+# 	with open('app/assets/data/trellis.json') as data_file:
+# 		return json.dumps(json.load(data_file))
 
 
-@app.route('/trellis/limit/', methods=['GET'])
-def get_trellis_limit(n_entries):
-	with open('app/assets/data/trellis.json') as data_file:
-		return json.dumps(json.load(data_file)[:n_entries])
+# @app.route('/trellis/limit/', methods=['GET'])
+# def get_trellis_limit(n_entries):
+# 	with open('app/assets/data/trellis.json') as data_file:
+# 		return json.dumps(json.load(data_file)[:n_entries])
 
 # def make_data_graph(data_list_in):
 # 	idx = 0
