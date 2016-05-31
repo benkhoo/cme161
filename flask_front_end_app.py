@@ -19,10 +19,8 @@ import json, collections
 
 @app.route('/trellis', methods=['GET'])
 def get_trellis():
-    return app.make_response(open('app/index.html').read())
-
-	# with open('app/assets/data/trellis.json') as data_file:
-	# 	return json.dumps(json.load(data_file))
+	with open('app/assets/data/trellis.json') as data_file:
+		return json.dumps(json.load(data_file))
 
 @app.route('/trellis/limit/', methods=['GET'])
 def get_trellis_limit(n_entries):
