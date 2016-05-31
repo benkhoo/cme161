@@ -13,6 +13,10 @@ def index():
 def send_assets(path):
     return send_from_directory('app/assets/', path)
 
+if __name__ == "__main__":
+	port = int(os.environ.get("PORT", 5050))
+	app.run(host='0.0.0.0', port=port, debug=False)    
+
 
 # ####### Data massaging  #######
 # import json, collections
@@ -62,9 +66,7 @@ def send_assets(path):
 # 			return json.dumps(make_data_graph(json.load(data_file)[:n_entries-1]))	
 
 
-# if __name__ == "__main__":
-# 	port = int(os.environ.get("PORT", 5050))
-# 	app.run(host='0.0.0.0', port=port, debug=False)
+
 
 # set debug=True if you want to have auto-reload on changes
 # this is great for developing
