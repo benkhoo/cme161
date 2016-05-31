@@ -22,7 +22,7 @@ def get_trellis():
 	with open('app/assets/data/trellis.json') as data_file:
 		return json.dumps(json.load(data_file))
 
-@app.route('/trellis/limit/', methods=['GET'])
+@app.route('/trellis/limit/<int:n_entries>', methods=['GET'])
 def get_trellis_limit(n_entries):
 	with open('app/assets/data/trellis.json') as data_file:
 		return json.dumps(json.load(data_file)[:n_entries])
