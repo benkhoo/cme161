@@ -13,9 +13,6 @@ def index():
 def send_assets(path):
     return send_from_directory('app/assets/', path)
 
-@app.route('/three/<path:path>')
-def send_assets(path):
-    return send_from_directory('app/assets/html/', path)
 
 ####### Data massaging  #######
 import json, collections
