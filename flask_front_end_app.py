@@ -7,11 +7,11 @@ app = Flask(__name__, static_url_path='')
 def index():
     return app.make_response(open('app/index.html').read())
 
-# # send assets (ex. assets/js/random_triangle_meshes/random_triangle_meshes.js)
-# # blocks other requests, so your directories won't get listed (ex. assets/js will return "not found")
-# @app.route('/assets/<path:path>')
-# def send_assets(path):
-#     return send_from_directory('app/assets/', path)
+# send assets (ex. assets/js/random_triangle_meshes/random_triangle_meshes.js)
+# blocks other requests, so your directories won't get listed (ex. assets/js will return "not found")
+@app.route('/assets/<path:path>')
+def send_assets(path):
+    return send_from_directory('app/assets/', path)
 
 
 # ####### Data massaging  #######
