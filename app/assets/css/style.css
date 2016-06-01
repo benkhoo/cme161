@@ -53,3 +53,11 @@ body {
   padding-right: 15px;
 }
 
+#gui {
+  position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+
+
+}
