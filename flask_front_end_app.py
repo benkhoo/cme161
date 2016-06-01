@@ -13,15 +13,19 @@ def index():
 def send_assets(path):
     return send_from_directory('app/assets/', path)
 
+@app.route("/boids")
+def index():
+    return app.make_response(open('app/boids_v2/boids_threejs.html').read())    
+
 
 ####### Data massaging  #######
 import json, collections
 
 @app.route('/trellis', methods=['GET'])
 def get_trellis():
-	return json.dumps(json.load(open('app/assets/data/trellis.json')))
-	# with open('app/assets/data/trellis.json') as data_file:
-	# 	return json.dumps(json.load(data_file))
+	# return json.dumps(json.load(open('app/assets/data/trellis.json')))
+	with open('app/assets/data/trellis.json') as data_file:
+		return json.dumps(json.load(data_file))
 
 @app.route('/trellis/limit/<int:n_entries>', methods=['GET'])
 def get_trellis_limit(n_entries):

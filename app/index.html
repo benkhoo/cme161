@@ -116,10 +116,10 @@
 					<hr>
 
 					<div class=".col-xs-12 .col-md-8">  
-						<h2>Boids Three.js</h2>
-						
-						<div id="dat_gui_container"></div>
-						<canvas id="three_boid"></canvas>
+							<h2>Boids Algorithm in Three.js</h2>
+							<div id="container_boids" bgcolor="#000000">
+								<canvas id="three_boid"></canvas>
+							</div>
 					</div>
 					<hr>
 					
@@ -304,21 +304,27 @@
 	<script src='assets/js/c3/c3crime.js'></script>
 
 
-	<!-- Three.js depedencies -->
-	<script src="assets/js/controls/dat.gui.min.js"></script>
-	<script src="assets/js/libs/stats.min.js"></script>
+	<!-- General Utilities (no dependencies) -->
+	<script src="assets/js/libs/ui/dat.gui.min.js"></script>
+	<script src="assets/js/libs/ui/stats.min.js"></script>
 
 	<!-- Renderer -->
-	<script src="assets/js/renderers/three.min.js"></script>
-	<script src="assets/js/renderers/Projector.js"></script>
-	<script src="assets/js/renderers/CanvasRenderer.js"></script>
-	<script src="assets/js/controls/OrbitControls.js"></script>
+	<script src="assets/js/libs/renderers/three/three.min.js"></script>
 
-	<!-- Physics - Boid -->
-	<script src="assets/js/physics/physics_boid.js"></script>
+	<!-- Renderer Plug-ins (depends on Three.js being loaded first) -->
+	<script src="assets/js/libs/renderers/three/plugins/AxesHelper2.js"></script>
+	<script src="assets/js/libs/renderers/three/plugins/OrbitControls.js"></script>
+	<script src="assets/js/libs/renderers/three/plugins/DeviceOrientationControls.js"></script>
 
-	<!-- Render - Boid -->
-	<script src="assets/js/renderers/render_three_boid.js"></script>
+	<!-- Physics (boids) -->
+	<script src="assets/js/libs/maths/vector3.js"></script>
+	<script src="assets/js/libs/physics/boids.js"></script>
+	
+	<!-- End General JS Libraries -->
+<script src="assets/js/main/boids_prototypes_for_three.js"></script>
+		
+		<!-- Main program that joins renderer (three) to physics (boid) -->
+		<script src="assets/js/main/boids_three.js"></script>
 
 
 	
