@@ -73,7 +73,7 @@ scene.add(directional_light);
 // user interface
 
 // dat.gui
-var gui = new dat.GUI({ autoPlace: false });
+var gui = new dat.GUI( {autoPlace: false });
 document.getElementById(viz_container_id).appendChild( gui.domElement );
 
 // this is an object that stores the state of the controls
