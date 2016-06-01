@@ -14,7 +14,7 @@ def send_assets(path):
     return send_from_directory('app/assets/', path)
 
 @app.route("/boids")
-def index():
+def go_boids():
     return app.make_response(open('app/boids_v2/boids_threejs.html').read())    
 
 
