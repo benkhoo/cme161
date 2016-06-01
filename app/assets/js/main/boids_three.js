@@ -74,7 +74,10 @@ scene.add(directional_light);
 
 // dat.gui
 var gui = new dat.GUI( {autoPlace: false });
+gui.domElement.id = 'gui';
 document.getElementById(viz_container_id).appendChild( gui.domElement );
+
+gui.style.position = "static";
 
 // this is an object that stores the state of the controls
 // when you click on the controls, it changes the values therein
