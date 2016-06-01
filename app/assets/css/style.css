@@ -54,10 +54,7 @@ body {
 }
 
 #gui {
-  position: relative;
-    left: 0px;
-    top: 0px;
+  position: absolute;
+
     z-index: 1;
-
-
 }
