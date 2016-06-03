@@ -17,9 +17,19 @@ def send_assets(path):
 def go_boids():
     return app.make_response(open('app/boids_v2/boids_threejs.html').read())    
 
+@app.route("/wine")
+def go_wine():
+    return app.make_response(open('app/wine.html').read())        
+
 
 ####### Data massaging  #######
 import json, collections
+
+@app.route('/data/wine.json', methods=['GET'])
+def get_trellis():
+	# return json.dumps(json.load(open('app/assets/data/trellis.json')))
+	with open('app/assets/data/wine.json') as data_file:
+		return json.dumps(json.load(data_file))
 
 @app.route('/trellis', methods=['GET'])
 def get_trellis():
