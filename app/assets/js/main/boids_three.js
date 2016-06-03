@@ -7,6 +7,7 @@
 **/
 var viz_container_id = "container_boids"; 
 var viz_canvas_id = "three_boid"; 
+var viz_control_id = "boids_controls"
 
 // ------------------------------------------------------------------------------------------------
 // renderer, camera, scene 
@@ -54,8 +55,9 @@ container.add(bounding_box);
 
 // stats (fps graph)
 var stats = new Stats();
-document.getElementById(viz_container_id).appendChild(stats.domElement); // add stats to the container
-stats.domElement.style.float = 'right';
+var stats_dom = document.getElementById(viz_control_id).appendChild(stats.domElement); // add stats to the container
+stats_dom.style.position = "static"
+//stats.domElement.style.float = 'right';
 
 // ------------------------------------------------------------------------------------------------
 // lights
@@ -75,7 +77,7 @@ scene.add(directional_light);
 // dat.gui
 var gui = new dat.GUI( {autoPlace: false });
 
-document.getElementById(viz_container_id).appendChild( gui.domElement );
+document.getElementById(viz_control_id).appendChild( gui.domElement );
 gui.domElement.id = 'gui';
 
 // this is an object that stores the state of the controls
