@@ -25,7 +25,7 @@ def go_wine():
 ####### Data massaging  #######
 import json, collections
 
-@app.route('/data/wine.json', methods=['GET'])
+@app.route('/data/wine', methods=['GET'])
 def get_wine():
 	with open('app/assets/data/wine_data.json') as data_file:
 		return json.dumps(json.load(data_file))
