@@ -26,8 +26,7 @@ def go_wine():
 import json, collections
 
 @app.route('/data/wine.json', methods=['GET'])
-def get_trellis():
-	# return json.dumps(json.load(open('app/assets/data/trellis.json')))
+def get_wine():
 	with open('app/assets/data/wine.json') as data_file:
 		return json.dumps(json.load(data_file))
 
