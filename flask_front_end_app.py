@@ -27,7 +27,7 @@ import json, collections
 
 @app.route('/data/wine.json', methods=['GET'])
 def get_wine():
-	with open('app/assets/data/wine.json') as data_file:
+	with open('app/assets/data/wine_data.json') as data_file:
 		return json.dumps(json.load(data_file))
 
 @app.route('/trellis', methods=['GET'])
